@@ -78,6 +78,7 @@ function playRound(humanChoice, computerChoice) {
 function playGame() {
   let numberOfRounds = 5;
   let humanSelection, computerSelection;
+  let roundNumber = 1;
 
   for (let i = 0; i < numberOfRounds; i++) {
     humanSelection = getHumanChoice();
@@ -85,8 +86,15 @@ function playGame() {
 
     playRound(humanSelection, computerSelection);
     console.log(
-      "Scoreboard: Computer - " + computerScore + ", You - " + humanScore
+      "Round " +
+        roundNumber +
+        "\nScoreboard: Computer - " +
+        computerScore +
+        ", You - " +
+        humanScore +
+        "\n\n"
     );
+    roundNumber++;
   }
 
   if (humanScore > computerScore) {
