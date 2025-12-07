@@ -8,9 +8,13 @@ let computerScore = 0;
 
 function getComputerChoice() {
   const randomValue = Math.random();
-  if (randomValue <= 1 / 3) return "rock";
-  else if (randomValue <= 2 / 3) return "paper";
-  else return "scissors";
+  if (randomValue <= 1 / 3) {
+    return "rock";
+  } else if (randomValue <= 2 / 3) {
+    return "paper";
+  } else {
+    return "scissors";
+  }
 }
 
 function displayRoundResult(resultStr) {
@@ -122,8 +126,28 @@ function playRound(humanChoice, computerChoice) {
 //   }
 // }
 
+function endGame() {
+  if (humanScore > computerScore) {
+    alert("You won this game, Game Over! Reload the page to play again.");
+  } else if (humanScore < computerScore) {
+    alert("You lose this game, Game Over! Reload the page to play again.");
+  } else {
+    alert("It's a tie game, Game Over! Reload the page to play again.");
+  }
+
+  const buttonsNodeList = document.querySelectorAll(".hand-choice-menu button");
+  buttonsNodeList.forEach((button) => (button.disabled = true));
+}
+
+function playGame(event) {
+  const humanChoice = event.target.id;
+  playRound(humanChoice, getComputerChoice());
+
+  const isGameOver = roundNumber > 5;
+  if (isGameOver) {
+    setTimeout(endGame, 1);
+  }
+}
+
 const handChoiceMenu = document.querySelector(".hand-choice-menu");
-handChoiceMenu.addEventListener("click", (event) => {
-  const handChoice = event.target.id;
-  playRound(handChoice, getComputerChoice());
-});
+handChoiceMenu.addEventListener("click", playGame);
