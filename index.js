@@ -5,18 +5,14 @@ let computerScore = 0;
 
 function getComputerChoice() {
   let randomValue = Math.random();
-  if (randomValue <= 1 / 3) {
-    return "rock";
-  } else if (randomValue <= 2 / 3) {
-    return "paper";
-  } else {
-    return "scissors";
-  }
+  if (randomValue <= 1 / 3) return "rock";
+  else if (randomValue <= 2 / 3) return "paper";
+  else return "scissors";
 }
 
-function getHumanChoice() {
-  return prompt("Rock, paper, scissors?");
-}
+// function getHumanChoice() {
+//   return prompt("Rock, paper, scissors?");
+// }
 
 function playRound(humanChoice, computerChoice) {
   humanChoice = humanChoice.toLowerCase();
@@ -108,11 +104,9 @@ function playRound(humanChoice, computerChoice) {
 //   }
 // }
 
-const handChoiceMenu = document.querySelector("#menu");
+const handChoiceMenu = document.querySelector(".hand-choice-menu");
 
 handChoiceMenu.addEventListener("click", (event) => {
-  const handChoice = event.target;
-  playRound(handChoice.id, getComputerChoice());
+  const handChoice = event.target.id;
+  playRound(handChoice, getComputerChoice());
 });
-
-playGame();
