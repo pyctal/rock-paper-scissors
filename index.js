@@ -75,37 +75,44 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  let numberOfRounds = 5;
-  let humanSelection, computerSelection;
-  let roundNumber = 1;
+// function playGame() {
+//   let numberOfRounds = 5;
+//   let humanSelection, computerSelection;
+//   let roundNumber = 1;
 
-  for (let i = 0; i < numberOfRounds; i++) {
-    humanSelection = getHumanChoice();
-    computerSelection = getComputerChoice();
+//   for (let i = 0; i < numberOfRounds; i++) {
+//     humanSelection = getHumanChoice();
+//     computerSelection = getComputerChoice();
 
-    playRound(humanSelection, computerSelection);
-    console.log(
-      "Round " +
-        roundNumber +
-        "\nScoreboard: Computer - " +
-        computerScore +
-        ", You - " +
-        humanScore +
-        "\n\n"
-    );
-    roundNumber++;
-  }
+//     playRound(humanSelection, computerSelection);
+//     console.log(
+//       "Round " +
+//         roundNumber +
+//         "\nScoreboard: Computer - " +
+//         computerScore +
+//         ", You - " +
+//         humanScore +
+//         "\n\n"
+//     );
+//     roundNumber++;
+//   }
 
-  if (humanScore > computerScore) {
-    console.log("You won this game, Game Over! Reload the page to play again.");
-  } else if (humanScore < computerScore) {
-    console.log(
-      "You lose this game, Game Over! Reload the page to play again."
-    );
-  } else {
-    console.log("It's a tie game, Game Over! Reload the page to play again.");
-  }
-}
+//   if (humanScore > computerScore) {
+//     console.log("You won this game, Game Over! Reload the page to play again.");
+//   } else if (humanScore < computerScore) {
+//     console.log(
+//       "You lose this game, Game Over! Reload the page to play again."
+//     );
+//   } else {
+//     console.log("It's a tie game, Game Over! Reload the page to play again.");
+//   }
+// }
+
+const handChoiceMenu = document.querySelector("#menu");
+
+handChoiceMenu.addEventListener("click", (event) => {
+  const handChoice = event.target;
+  playRound(handChoice.id, getComputerChoice());
+});
 
 playGame();
