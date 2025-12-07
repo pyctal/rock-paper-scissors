@@ -4,10 +4,17 @@ let humanScore = 0;
 let computerScore = 0;
 
 function getComputerChoice() {
-  let randomValue = Math.random();
+  const randomValue = Math.random();
   if (randomValue <= 1 / 3) return "rock";
   else if (randomValue <= 2 / 3) return "paper";
   else return "scissors";
+}
+
+function displayRoundResult(resultStr) {
+  const roundResultsDiv = document.querySelector(".round-results");
+  const roundResult = document.createElement("p");
+  roundResult.textContent = resultStr;
+  roundResultsDiv.appendChild(roundResult);
 }
 
 // function getHumanChoice() {
@@ -20,15 +27,15 @@ function playRound(humanChoice, computerChoice) {
     case "rock":
       switch (computerChoice) {
         case "rock":
-          console.log("It's a tie! Rock matches rock");
+          displayRoundResult("It's a tie! Rock matches rock");
           break;
         case "paper":
           computerScore++;
-          console.log("You lose! Paper beats rock");
+          displayRoundResult("You lose! Paper beats rock");
           break;
         case "scissors":
           humanScore++;
-          console.log("You win! Rock beats scissors");
+          displayRoundResult("You win! Rock beats scissors");
           break;
       }
       break;
@@ -37,14 +44,14 @@ function playRound(humanChoice, computerChoice) {
       switch (computerChoice) {
         case "rock":
           humanScore++;
-          console.log("You win! Paper beats rock");
+          displayRoundResult("You win! Paper beats rock");
           break;
         case "paper":
-          console.log("It's a tie! Paper matches paper");
+          displayRoundResult("It's a tie! Paper matches paper");
           break;
         case "scissors":
           computerScore++;
-          console.log("You lose! Scissors beats paper");
+          displayRoundResult("You lose! Scissors beats paper");
           break;
       }
       break;
@@ -53,21 +60,17 @@ function playRound(humanChoice, computerChoice) {
       switch (computerChoice) {
         case "rock":
           computerScore++;
-          console.log("You lose! Rock beats scissors");
+          displayRoundResult("You lose! Rock beats scissors");
           break;
         case "paper":
           humanScore++;
-          console.log("You win! Scissors beats paper");
+          displayRoundResult("You win! Scissors beats paper");
           break;
         case "scissors":
-          console.log("It's a tie! Scissors matches scissors");
+          displayRoundResult("It's a tie! Scissors matches scissors");
           break;
       }
       break;
-
-    default:
-      computerScore++;
-      console.log("You lose! Incorrect value provided");
   }
 }
 
@@ -105,7 +108,6 @@ function playRound(humanChoice, computerChoice) {
 // }
 
 const handChoiceMenu = document.querySelector(".hand-choice-menu");
-
 handChoiceMenu.addEventListener("click", (event) => {
   const handChoice = event.target.id;
   playRound(handChoice, getComputerChoice());
